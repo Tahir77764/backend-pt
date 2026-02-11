@@ -73,10 +73,16 @@ const PORT = process.env.PORT || 5000;
 // -------------------- MIDDLEWARE --------------------
 vtPrintzBackend.use(
     cors({
-        origin: '*', // For testing. Better to use specific URLs in production.
-        // credentials: true, 
+        origin: [
+            "http://localhost:5173",   // Vite local
+            "http://localhost:3000",   // CRA local (if used)
+            "https://vt-printz.netlify.app"  // 🔥 Your real Netlify URL
+        ],
+        methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+        credentials: true
     })
 );
+
 
 
 vtPrintzBackend.use(cookieParser());
